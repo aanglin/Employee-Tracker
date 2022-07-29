@@ -1,13 +1,27 @@
-DROP DATABASE IF EXISTS employee_tracker;
-CREATE DATABASE employee_tracker;
+-- To view all departments function
+SELECT * FROM department
 
-USE employee_tracker;
+-- To view all roles function
+SELECT * FROM role
 
+-- SELECT
+-- department.id,role.title,department.name
+-- FROM department
+-- INNER JOIN role ON department.id = role.department_id
+
+
+
+-- To view all employees function( THIS IS A JOIN STATEMENT)
+SELECT * FROM employee
+
+-- To create a table function
 CREATE TABLE department (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100)
 );
 
+
+-- To create a role function
 CREATE TABLE role (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(100),
@@ -18,6 +32,8 @@ CREATE TABLE role (
     ON DELETE SET NULL
 );
 
+
+-- To create a new employee function
 CREATE TABLE employee (
     id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(100),
@@ -27,3 +43,4 @@ CREATE TABLE employee (
     FOREIGN KEY (role_id)
     REFERENCES role(id)
 );
+
