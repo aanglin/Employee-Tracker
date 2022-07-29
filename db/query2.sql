@@ -1,18 +1,23 @@
 -- To view all departments function
+USE employee_tracker;
 SELECT * FROM department
 
 -- To view all roles function
-SELECT * FROM role
-
--- SELECT
--- department.id,role.title,department.name
--- FROM department
--- INNER JOIN role ON department.id = role.department_id
-
+USE employee_tracker;
+SELECT
+department.id,role.department_id,title,salary,department.name
+FROM department
+INNER JOIN role ON department.id = role.department_id
 
 
 -- To view all employees function( THIS IS A JOIN STATEMENT)
-SELECT * FROM employee
+USE employee_tracker;
+SELECT
+department.id,role.department_id,title,salary,employee.first_name,last_name,manager_id,department.name
+FROM department
+JOIN role ON department.id = role.department_id
+CROSS JOIN employee
+ON employee.role_id = role.id;
 
 -- To create a table function
 CREATE TABLE department (
@@ -43,4 +48,13 @@ CREATE TABLE employee (
     FOREIGN KEY (role_id)
     REFERENCES role(id)
 );
+
+
+
+
+
+
+
+
+
 

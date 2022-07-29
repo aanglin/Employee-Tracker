@@ -34,7 +34,7 @@ const db = mysql.createConnection(
                   viewDepart(); 
                   break;
                   case 'View all roles':
-                      viewRoles();
+                      viewRole();
                       break;
                       case 'View all employees':
                           viewEmployee();
@@ -54,6 +54,33 @@ const db = mysql.createConnection(
               }
           })   
     
+          function viewDepart(){
+           db.query('USE employee_tracker SELECT * FROM department', function (err,results)  {
+               if(err){
+                   console.log(err);
+                   console.log(results);
+           }
+           
+        });
+    }
+
+    function viewRole(){
+        db.query('USE employee_tracker SELECT department.id,role.department_id,title,salary,department.name FROM department INNER JOIN role ON department.id = role.department_id', function (err,results)  {
+            if(err){
+                console.log(err);
+                console.log(results);
+        }
+        
+     });
+          
+          
+          
+          
+          
+          
+          
+          
+          
           function addDepart() {
               inquirer.prompt ([
                  {
