@@ -8,7 +8,7 @@ INSERT INTO department(name)
 INSERT INTO role (title, salary, department_id)   
     VALUES("Sales Mananger", 60000, 01),
           ("Hr Mananger", 60000, 02),
-          ("salesman", 40000, 03),
+          ("Salesman", 40000, 03),
           ("Hr Rep", 40000, 04);
           
 
