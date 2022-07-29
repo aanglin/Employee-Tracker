@@ -72,8 +72,16 @@ const db = mysql.createConnection(
         }
         
      });
-          
-          
+    }
+    
+    function viewEmployee(){
+        db.query('USE employee_tracker SELECT department SELECT department.id,role.department_id,title,salary,employee.first_name,last_name,manager_id,department.name FROM department JOIN role ON department.id=role.department_id CROSS JOIN employee ON employee.role_id=role.id', function (err,results) {
+         if(err){
+             console.log(err);
+             console.log(results);
+         }   
+         })
+        } 
           
           
           
