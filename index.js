@@ -27,7 +27,6 @@ db.connect(function(err) {
                     'Add a department',
                     'Add a role',
                     'Add an employee', 
-                    'Update an employee',
                     'Exit'
                 ]
               },  
@@ -58,7 +57,7 @@ db.connect(function(err) {
            db.query('SELECT * FROM department', function (err,results)  {
                if(err) throw err;
                 
-                console.log(results);
+                console.table(results);
           start(); 
         });
     }
@@ -79,6 +78,7 @@ db.connect(function(err) {
              console.log(err);
             }   
             console.table(results);
+            start();
          })
         } 
           
