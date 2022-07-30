@@ -1,4 +1,9 @@
 # Employee-Tracker
+
+# Link to submission video.
+
+## **[video submission](<https://drive.google.com/file/d/1yy5yHcwNL4RXdCXDNStAQMAhReN0e6xI/view>)**
+
 #  Liscense: 
 ##  ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
