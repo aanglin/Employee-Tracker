@@ -51,10 +51,6 @@ db.connect(function(err) {
                                   break;
                                   case 'Add an employee':
                                       addEmployee();
-                                      break;
-                                      case 'Update an employee':
-                                          updateEmployee();
-
               }
           })   
         }
@@ -102,6 +98,38 @@ db.connect(function(err) {
         }
           
           
+        function addRole() {
+            db.query('SELECT * FROM role', function (err,results){
+                inquirer.prompt ([
+                    {
+                        name: 'title',
+                        message: 'What is the title of the new role?',
+                        type: 'input'
+                    },
+                    {
+                        name: 'salary',
+                        message: 'What is the salary of the new employee?',
+                        type: 'input'
+                    },  
+                    {
+                        name: 'id',
+                        message: 'What is the id of the new department?',
+                        type: 'input'
+                    }, 
+                    
+                    
+                ]).then (answer =>{
+                    let selectedRole = results.find(department => department.name === answer.department_id)
+                    db.query('INSERT INTO role SET ?', {
+                       title: answer.title,
+                       salary: answer.salary,
+                       department_id:selectedRole.id,
+                    })
+                    start();
+                })
+            })
+        }      
+        
         function addEmployee() {
             db.query('SELECT * FROM role', function (err,results){
                 inquirer.prompt ([
@@ -127,9 +155,7 @@ db.connect(function(err) {
                         type: 'list',
                         choices: ['1', '2']
                     }
-                    
-                    
-                    
+    
                     // add manager id in question 
                 ]).then (answer =>{
                     let selectedRole = results.find(role => role.title === answer.role)
@@ -142,41 +168,9 @@ db.connect(function(err) {
                 })
             })
         }      
+              
+              
 
-
-          
-    function addEmployee() {
-        db.query('SELECT * FROM role', function (err,results){
-            inquirer.prompt ([
-                {
-                    name: 'first_name',
-                    message: 'What is the first name of new employee?',
-                    type: 'input'
-                },
-                {
-                    name: 'last_name',
-                    message: 'What is the last name of the new employee?',
-                    type: 'input'
-                },  
-                {
-                    name: 'role',
-                    message: 'What is the role of the new employee?',
-                    type: 'list',
-                    choices:results.map(role => role.title)
-                }, 
-                // add manager id in question 
-            ]).then (answer =>{
-                let selectedRole = results.find(role => role.title === answer.role)
-                db.query('INSERT INTO employee SET ?', {
-                   first_name: answer.first_name,
-                   last_name: answer.last_name,
-                   role_id:selectedRole.id,
-                })
-                start();
-            })
-        })
-    }      
-          
           
     
     
